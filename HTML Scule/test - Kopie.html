@@ -1,0 +1,156 @@
+<style>
+  /* Add some minimal styling to the website */
+  body {
+    font-family: sans-serif;
+    margin: 0;
+	padding-top: 90px;
+    background-color: #EEEEEE;
+    color: black;
+	background-image: url('https://r4.wallpaperflare.com/wallpaper/258/281/250/stock-fluid-bubbles-blue-wallpaper-0ec5df4eb2f02b538a95968ec3032b9a.jpg');
+	background-attachment: scroll;
+	background-position: center;
+  }
+  .section {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    color: inherit;
+  }
+  /* Add a new rule for the body when in dark mode */
+  body.dark {
+    background-color: #333333;
+    color: white;
+  }
+  .section {
+    max-width: 800px;
+    margin: 20px auto;
+	margin-top: 40px;
+	border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    color: inherit;
+    background-color: #ffffff;
+  }
+  /* Add a new rule for the .section class when in dark mode */
+  body.dark .section {
+    background-color: #444444;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  /* Add a new rule for the .section class when in light mode */
+  body.light .section {
+    background-color: #e7e6e6;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  }
+  .section-title {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #1E90FF;
+  }
+
+  /* Add some styling to the navbar */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    background-color: #f2f2f2;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+	  justify-content: center; /* centers the nav bar */
+  font-size: larger; /* increases the font size */
+  padding: 20px; /* increases the size of the nav bar */
+  }
+  nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  nav li {
+    margin: 0 20px;
+  }
+  nav a {
+    text-decoration: none;
+    color: #1E90FF;
+  }
+  nav a:hover {
+    color: #1E90FF;
+  }
+  nav {
+  /* default styles for light mode */
+  background-color: #e7e6e6;
+  color: #000000;
+}
+
+body.dark nav {
+  /* styles for dark mode */
+  background-color: #444444;
+  color: #ffffff;
+}
+
+</style>
+
+<nav>
+  <ul>
+    <li><a href="#personal-data">Personal Data</a></li>
+    <li><a href="#contact-info">Contact Info</a></li>
+    <li><a href="#personal-projects">Personal Projects</a
+</a></li>
+  </ul>
+</nav>
+<button id="mode-button" style="position: absolute; top: 20px; right: 20px;">Toggel Theme</button>
+
+<div class="section" id="personal-data">
+  <h1 class="section-title">Personal Data</h1>
+  <p>
+    My name is John Doe and I am a software developer. I have been working in the industry for the past 5 years, and have experience with a wide range of programming languages and technologies.
+  </p>
+</div>
+
+<div class="section" id="contact-info">
+  <h1 class="section-title">Contact Info</h1>
+  <p>
+    You can reach me via email at john.doe@gmail.com, or by phone at 555-555-5555.
+  </p>
+</div>
+
+<div class="section" id="personal-projects">
+  <h1 class="section-title">Personal Projects</h1>
+  <p>
+    I enjoy working on personal projects in my free time, to keep my skills sharp and explore new technologies. Some of my recent projects include:
+  </p>
+  <ul>
+    <li>A to-do list app built with React</li>
+    <li>A weather app that uses the OpenWeatherMap API</li>
+    <li>A simple game built with Unity</li>
+  </ul>
+</div>
+
+<div class="section" id="best-work">
+  <h1 class="section-title">Best work</h1>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/O91DT1pR1ew?" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+<script>
+  // Check if the user has a preferred mode stored in local storage
+  var preferredMode = localStorage.getItem('preferredMode');
+
+  // If the user has a preferred mode stored, apply it to the body
+  if (preferredMode) {
+    document.body.classList.add(preferredMode);
+  }
+
+  var modeButton = document.getElementById('mode-button');
+
+  modeButton.addEventListener('click', function() {
+    document.body.classList.toggle('dark');
+    // If the body is in dark mode, set the preferred mode to dark
+    // Otherwise, set the preferred mode to light
+    var preferredMode = document.body.classList.contains('dark') ? 'dark' : 'light';
+    localStorage.setItem('preferredMode', preferredMode);
+  });
+</script>
