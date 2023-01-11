@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding-top: 50px;
+      background-color: #EEEEEE;
+      color: black;
+      background-attachment: scroll;
+      background-position: center;
+    }
+	
+	#mode-icon{
+		width: 45px;
+		height: 45px;
+		margin: -10px;
+		transition: transform 0.2s; 
+		transform: translateY(0px);  
+	}
+	
+	#mode-icon:hover { 
+		transform: scale(1.15); 
+	}
+
+    body.dark {
+      background-color: #333333;
+      color: white;
+    }
+    .section {
+      max-width: 800px;
+      margin: 20px auto;
+      margin-top: 40px;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+      color: inherit;
+      background-color: #ffffff;
+    }
+
+    body.dark .section {
+      background-color: #1f1e1e;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    body.light .section {
+      background-color: #e7e6e6;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    }
+    .section-title {
+      font-weight: bold;
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #1E90FF;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      background-color: #f2f2f2;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+      justify-content: center;
+      font-size: larger;
+      padding: 20px;
+	}	
+	
+    nav ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+	
+    nav li {
+      margin: 0 20px;
+    }
+	
+    nav a {
+      text-decoration: none;
+      color: #1E90FF;
+    }
+	
+    nav a:hover {
+      color: #1E90FF;
+    }
+	
+    nav {
+      /* default styles for light mode */
+      background-color: #e7e6e6;
+      color: #000000;
+    }
+	
+    body.dark nav {
+      /* styles for dark mode */
+      background-color: #1f1e1e;
+      color: #ffffff;
+	}
+	
+	html, body {
+		margin-bottom: 100px;
+	}
+	
+  </style>
+  
+</head>
+
+<body class='light'>
+	<nav>
+		<ul>
+			<li><a href="#personal-data">Personal Data</a></li>
+			<li><a href="#contact-info">Contact Info</a></li>
+			<li><a href="#personal-projects">Personal Projects</a></li>
+			<li><a href="#Web-Mailer">Web Mailer</a></li>
+			<li><a href="#best-work">Best Work</a></li>
+		</ul>
+	  <img id="mode-icon" src="sun.svg" style="position: absolute; top: 18px; right: 18px; cursor: pointer;">
+	</nav>
+
+	<div class="section" id="personal-data">
+		<h1 class="section-title">Personal Data</h1>
+		<p>
+		My name is John Doe and I am a software developer. I have been working in the industry for the past 5 years, and have experience with a wide range of programming languages and technologies.
+		</p>
+	</div>
+  
+	<div class="section" id="contact-info">
+		<h1 class="section-title">Contact Info</h1>
+		<p>
+		You can contact me via email at <a href="mailto:Max.Mustermann@Muster.de" style="color: inherit;" >Max.Mustermann@Muster.de</a>, by phone <a href="tel:+555555555" style="color: inherit;">555 555 555</a> or via the Formular below.
+		</p>
+		<a href="https://docs.google.com/forms/d/1Mi0sXXbIeACLAY8bsPrpDcYZXKRErbrVfl4GcEaLofc" style="color: inherit;"> >>Formular<< </a>
+	</div>
+  
+	<div class="section" id="personal-projects">
+		<h1 class="section-title">Personal Projects</h1>
+		<p>
+		I enjoy working on personal projects in my spare time to expand my skills and try out new technologies. Some of my recent projects include a weather app, a recipe app, and a budgeting app.
+		</p>
+	</div>
+  
+	<div class="section" id="Web-Mailer">
+		<h1 class="section-title">My Web Mail Portal</h1>
+		<a href="https://mail.krebs.onl/SOGo/" style="color: inherit;"> >>Web Mailer<< </a>
+	</div>
+  
+	<div class="section" id="best-work">
+		<h1 class="section-title">Best work</h1>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/O91DT1pR1ew?" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</div>
+	
+	<div class="section" id="Download">
+		<h1 class="section-title">Download</h1>
+		<button onclick="startDownload()">Download File.txt</button>
+	</div>
+
+
+<script>
+
+	// keine ahnung warum der direct download nicht geht ¯\_(._.)_/¯
+	src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"
+
+    function startDownload() {
+        fetch('https://file.io/3x1reIOzlUyB')
+        .then(response => response.blob())
+        .then(blob => {
+            saveAs(blob, 'File.txt');
+        });
+    }
+
+const navbarHeight = document.querySelector('nav').clientHeight;
+
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+    const sectionId = event.target.getAttribute('href');
+    const section = document.querySelector(sectionId);
+    const offsetTop = section.offsetTop;
+    section.offsetTop = offsetTop - navbarHeight;
+    window.scrollTo({
+      top: offsetTop - navbarHeight,
+      behavior: 'smooth',
+    });
+  });
+});
+
+  // JavaScript zwischen Dark und Light Mode Wechseln Button
+  const modeIcon = document.getElementById('mode-icon');
+  let currentMode = 'light';
+
+  // Objekt erstellen für Hintergrund
+  const backgroundImages = {
+    light: "https://raw.githubusercontent.com/ManKenntIhn/HTML/main/Files/WhiteModeWall.jpg",
+    dark: "https://raw.githubusercontent.com/ManKenntIhn/HTML/main/Files/DarkModeWall.jpg"
+	};
+
+  function toggleMode() {
+    if (currentMode === 'light') {
+      document.body.classList.add('dark');
+      document.body.classList.remove('light');
+      currentMode = 'dark';
+      modeIcon.src = 'https://raw.githubusercontent.com/ManKenntIhn/HTML/main/Files/Mond.png';
+      document.body.style.backgroundImage = `url(${backgroundImages[currentMode]})`;
+      localStorage.setItem('mode', 'dark')
+    } else {
+      document.body.classList.add('light');
+      document.body.classList.remove('dark');
+      currentMode = 'light';
+      modeIcon.src = 'https://raw.githubusercontent.com/ManKenntIhn/HTML/main/Files/Sonne.png';
+      document.body.style.backgroundImage = `url(${backgroundImages[currentMode]})`;
+      localStorage.setItem('mode', 'light')
+    }
+	}
+
+  modeIcon.addEventListener('click', toggleMode);
+  
+  // check auf gespeicherte Preferenz
+  if (localStorage.getItem('mode') === 'dark') {
+    toggleMode();
+	}
+</script>
+</body>
+</html>
